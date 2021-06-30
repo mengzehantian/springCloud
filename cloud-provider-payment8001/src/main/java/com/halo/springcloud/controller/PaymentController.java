@@ -1,7 +1,7 @@
 package com.halo.springcloud.controller;
 
 
-import com.halo.springcloud.domain.CommonResult;
+import com.halo.springcloud.util.CommonResult;
 import com.halo.springcloud.domain.Payment;
 import com.halo.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;

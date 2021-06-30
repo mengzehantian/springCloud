@@ -1,4 +1,4 @@
-package com.halo.springcloud.domain;
+package com.halo.springcloud.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
