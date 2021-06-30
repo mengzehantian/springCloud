@@ -5,6 +5,7 @@ import com.halo.springcloud.util.CommonResult;
 import com.halo.springcloud.domain.Payment;
 import com.halo.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,12 +24,15 @@ public class PaymentController {
     @Resource
     private PaymentService paymentService;
 
+    @Value("${server.port}")
+    private String serverPort;
+
     @PostMapping(value = "/add")
     public CommonResult add(@RequestBody Payment payment){
         boolean result = paymentService.save(payment);
         log.info("*****插入结果是:"+result);
         if(result){
-            return new CommonResult(200,"添加成功",result);
+            return new CommonResult(200,"添加成功,serverPort:"+serverPort,result);
         }else {
             return new CommonResult(444,"添加成功",null);
         }
@@ -44,7 +48,7 @@ public class PaymentController {
     public CommonResult<Payment> queryById(@PathVariable("id") Long id){
         Payment payment = paymentService.getById(id);
         if(payment!=null){
-            return new CommonResult<>(200,"查询成功",payment);
+            return new CommonResult<>(200,"查询成功,serverPort:"+serverPort,payment);
         }else {
             return new CommonResult<>(200,"没有对应记录，查询ID："+id,null);
         }

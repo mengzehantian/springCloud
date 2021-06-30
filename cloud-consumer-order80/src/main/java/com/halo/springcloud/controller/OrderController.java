@@ -23,7 +23,15 @@ import java.util.List;
 @RequestMapping(value = "/consumer")
 public class OrderController {
 
-    private static final String PAYMENT_URL = "http://localhost:8001";
+    /**
+     * 单机版配置
+     */
+//    private static final String PAYMENT_URL = "http://localhost:8001";
+
+    /**
+     * 集群版配置 服务名称 --CLOUD-PAYMENT-SERVICE
+     */
+    private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
