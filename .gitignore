@@ -1,6 +1,20 @@
-##ignore this file##
-/target/
-/*/target/
+target
+bin
+bak
+.pmd
+.project
+.settings
+.classpath
+.idea.xml
 .idea
 *.class
-/*.iml
+*.bak
+*.iml
+*.ipr
+*.iws
+.DS_Store
+nb-configuration.xml
+coverage-report
+logs
+conf
+*.log
