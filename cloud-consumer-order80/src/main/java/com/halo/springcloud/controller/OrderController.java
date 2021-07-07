@@ -4,6 +4,7 @@ import com.halo.springcloud.util.CommonResult;
 import com.halo.springcloud.domain.Payment;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,4 +51,19 @@ public class OrderController {
     public CommonResult<List<Payment>> getAllPayment(){
         return restTemplate.getForObject(PAYMENT_URL+"/payment/getAll",CommonResult.class);
     }
+
+
+    @GetMapping("/payment/getForEntity/{id}")
+    public CommonResult<Payment> getPayment2(@PathVariable("id") Long id){
+
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+
+        if (entity.getStatusCode().is2xxSuccessful()){
+            return entity.getBody();
+        }else {
+            return new CommonResult<>(444,"操作失败");
+        }
+
+    }
+
 }
