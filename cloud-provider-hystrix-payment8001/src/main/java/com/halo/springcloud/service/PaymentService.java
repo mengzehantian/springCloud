@@ -18,17 +18,17 @@ public class PaymentService {
     }
 
     @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler",commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000")
     })
     public String paymentInfo_TimeOut(Integer id){
 
-        int timeNumber = 10/0;
-        //int timeNumber = 5;
-//        try{
-//            TimeUnit.SECONDS.sleep(timeNumber);
-//        }catch (InterruptedException e){
-//            e.printStackTrace();
-//        }
+        //int timeNumber = 10/0;
+        int timeNumber = 3;
+        try{
+            TimeUnit.SECONDS.sleep(timeNumber);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
         return "线程池:"+Thread.currentThread().getName()+"paymentInfo_timeout,id:"+id+"\t"+"哈哈~~~"+" 耗时(秒):"+timeNumber;
     }
 
