@@ -21,18 +21,20 @@ public class PaymentService {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
     })
     public String paymentInfo_TimeOut(Integer id){
-        int timeNumber = 5;
-        try{
-            TimeUnit.SECONDS.sleep(timeNumber);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
+
+        int timeNumber = 10/0;
+        //int timeNumber = 5;
+//        try{
+//            TimeUnit.SECONDS.sleep(timeNumber);
+//        }catch (InterruptedException e){
+//            e.printStackTrace();
+//        }
         return "线程池:"+Thread.currentThread().getName()+"paymentInfo_timeout,id:"+id+"\t"+"哈哈~~~"+" 耗时(秒):"+timeNumber;
     }
 
     public String paymentInfo_TimeOutHandler(Integer id){
 
-        return "线程池:"+Thread.currentThread().getName()+"paymentInfo_TimeOutHandler,id:"+id+"\t"+"哈哈~~~"+" 耗时(秒):"+"服务降级处理";
+        return "线程池:"+Thread.currentThread().getName()+"系统繁忙或者运行报错,id:"+id+"\t"+"哈哈~~~"+" 耗时(秒):"+"服务降级处理";
     }
 
 }
