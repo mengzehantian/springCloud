@@ -21,6 +21,11 @@ public class PaymentController {
     @Resource
     private PaymentService paymentService;
 
+    /**
+     * 服务降级部分
+     */
+
+
     @Value("${server.port}")
     private String serverPort;
 
@@ -37,4 +42,17 @@ public class PaymentController {
         log.info("*****result:" + result);
         return result;
     }
+
+
+    /**
+     * 服务熔断部分
+     */
+
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id")Integer id){
+        String result = paymentService.paymentCircuitBreaker(id);
+        log.info("******result:"+result);
+        return result;
+    }
+
 }
